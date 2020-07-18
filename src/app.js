@@ -38,6 +38,7 @@ mongoose.connect(mongodbUrl, {
 )
 .catch(e => console.log(e.reason))
 
+
 // Sideline Routes
 app.get('/api/covid/daily', async(req, res) => {
     const daily = await dailyModel.find({})
