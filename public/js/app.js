@@ -33,24 +33,24 @@ const fetchData = (url) => {
 form.addEventListener('submit', (e) => {
     e.preventDefault()
     const location = search.value
-    const url = `http://127.0.0.1:5000/weather?address=${location}`
+    const url = `/weather?address=${location}`
     fetchData(url)
 })
 lataban.addEventListener('click', (e) => {
     e.preventDefault()
-    fetchData('http://127.0.0.1:5000/weather?address=lataban liloan')
+    fetchData('/weather?address=lataban liloan')
 })
 tabla.addEventListener('click', (e) => {
     e.preventDefault()
-    fetchData('http://127.0.0.1:5000/weather?address=tabla liloan')
+    fetchData('/weather?address=tabla liloan')
 })
 mulao.addEventListener('click', (e) => {
     e.preventDefault()
-    fetchData('http://127.0.0.1:5000/weather?address=mulao liloan')
+    fetchData('/weather?address=mulao liloan')
 })
 cabadiangan.addEventListener('click', (e) => {
     e.preventDefault()
-    fetchData('http://127.0.0.1:5000/weather?address=cabadiangan liloan')
+    fetchData('/weather?address=cabadiangan liloan')
 })
 
 

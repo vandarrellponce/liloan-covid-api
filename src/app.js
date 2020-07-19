@@ -128,8 +128,9 @@ app.get('/weather/*', (req, res) => {
     res.send('Weather article not found!')
 }) */
 
+const port = process.env.PORT || 5000;
 
 // Start server service
-app.listen(5000, ()=> {
-    console.log('Server is Up. Listening on localhost port 5000')
+app.listen(port, ()=> {
+    console.log('Server is Up. Listening on localhost port ' + port)
 })
