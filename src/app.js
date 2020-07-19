@@ -64,7 +64,7 @@ app.get('/', (req, res) => {
         long: 123.966682
     }  */
      res.render('index', {
-         title: 'Exterra Weather',
+         title: 'paiTERRA Weather',
          name: 'Darrell Ponce'
      }) 
 })
