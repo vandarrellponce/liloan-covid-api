@@ -50,7 +50,10 @@ app.post('/api/covid/daily', async(req, res) => {
         totalConfirmed: req.body.confirmed,
         totalDeath: req.body.death,
         totalRecovered: req.body.recovered,
-        reportDate: req.body.reportDate
+        reportDate: req.body.reportDate,
+        newConfirmed: req.body.newConfirmed,
+        newDeath: req.body.newDeath,
+        newRecovered: req.body.newRecovered
     })
     await newDaily.save()
     res.send({message: "uploaded"})
