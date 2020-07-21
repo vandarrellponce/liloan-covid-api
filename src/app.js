@@ -72,30 +72,29 @@ app.post('/api/covid/daily', async(req, res) => {
 
 // update or post barangay data
 app.post('/api/covid/barangay' ,async(req, res) => {
-
     // create new barangay data
-    const newBarangayData = new barangayModel({
+    const newBarangayData = {
         name: req.body.name,
         totalConfirmed: req.body.confirmed,
         totalRecovered: req.body.recovered,
         totalDeath: req.body.death,
         reportDate: req.body.reportDate
-    })
-    
-    // find one and update
-    barangayModel.fin
-    const updatedBarangay = await barangayModel.findOneAndUpdate(
-        {name: req.body.name},
-        newBarangayData)
-    
-    // if barangay does not exist, save the new barangay data
-    if(!updatedBarangay){
-       const newData = await newBarangayData.save()
-       return res.send({message: "created new barangay data of " + newData.name})
     }
+    // find if barangay already exist, if exist then update
+    const barangay = await barangayModel.findOne({name:req.body.name})
+    if (barangay){
+       barangay.totalConfirmed = req.body.confirmed
+       barangay.totalRecovered = req.body.recovered
+       barangay.totalDeath = req.body.death
+       barangay.reportDate = req.body.reportDate
 
-    // if barangay exist and update success,
-    res.send({message: "updated barangay " + updatedBarangay.name})
+       const updatedBarangay = await barangay.save()
+     return res.send({message: "updated barangay " + updatedBarangay.name})
+    }
+    // if barangay does not exist, save the new barangay data
+    const newData = await new barangayModel(newBarangayData).save()
+    return res.send({message: "created new barangay data of " + newData.name})
+
 })
 
 // App Routes
