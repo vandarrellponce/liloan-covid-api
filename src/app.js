@@ -49,7 +49,7 @@ app.get('/api/covid/daily', async(req, res) => {
 })
 
 // get all barangay data
-app.get('/api/covid/barangay' async(req, res) => {
+app.get('/api/covid/barangay', async(req, res) => {
     const barangays = await barangayModel.find({})
     res.send(barangays)
 })
