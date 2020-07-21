@@ -72,7 +72,7 @@ app.post('/api/covid/barangay' ,async(req, res) => {
         name: req.body.name,
         totalConfirmed: req.body.confirmed,
         totalRecovered: req.body.recovered,
-        totalDeath: req.body.totalDeath,
+        totalDeath: req.body.death,
         reportDate: req.body.reportDate
     })
     
