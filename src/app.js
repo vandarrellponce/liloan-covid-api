@@ -48,6 +48,12 @@ app.get('/api/covid/daily', async(req, res) => {
     res.send(daily)
 })
 
+// get all barangay data
+app.get('/api/covid/barangay' async(req, res) => {
+    const barangays = await barangayModel.find({})
+    res.send(barangays)
+})
+
 // post daily data
 app.post('/api/covid/daily', async(req, res) => {
     
@@ -77,6 +83,7 @@ app.post('/api/covid/barangay' ,async(req, res) => {
     })
     
     // find one and update
+    barangayModel.fin
     const updatedBarangay = await barangayModel.findOneAndUpdate(
         {name: req.body.name},
         newBarangayData)
