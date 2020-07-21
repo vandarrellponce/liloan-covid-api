@@ -2,9 +2,9 @@ const mongoose = require('mongoose')
 
 const barangaySchema = mongoose.Schema({
     name: {type:String, required: true},
-    totalC: {type: Number, required: true},
-    totalD: {type: Number, required: true},
-    totalR: {type: Number, required: true},
+    totalConfirmed: {type: Number, required: true},
+    totalRecovered: {type: Number, required: true},
+    totalDeath: {type: Number, required: true},
     reportDate: {type: String, required:true}
 })
 

@@ -6,6 +6,7 @@ const { getGeocode, getWeather } = require('./utils/utils')
 const mongoose = require('mongoose')
 const mongodbUrl = require('./config')
 const dailyModel = require('./models/dailyModel')
+const barangayModel = require('./models/barangayModel')
 
 const app = express()
 
@@ -40,10 +41,14 @@ mongoose.connect(mongodbUrl, {
 
 
 // Sideline Routes
+
+// get all daily data
 app.get('/api/covid/daily', async(req, res) => {
     const daily = await dailyModel.find({})
     res.send(daily)
 })
+
+// post daily data
 app.post('/api/covid/daily', async(req, res) => {
     
     const newDaily = new dailyModel({
@@ -57,6 +62,33 @@ app.post('/api/covid/daily', async(req, res) => {
     })
     await newDaily.save()
     res.send({message: "uploaded"})
+})
+
+// update or post barangay data
+app.post('/api/covid/barangay' ,async(req, res) => {
+
+    // create new barangay data
+    const newBarangayData = new barangayModel({
+        name: req.body.name,
+        totalConfirmed: req.body.confirmed,
+        totalRecovered: req.body.recovered,
+        totalDeath: req.body.totalDeath,
+        reportDate: req.body.reportDate
+    })
+    
+    // find one and update
+    const updatedBarangay = await barangayModel.findOneAndUpdate(
+        {name: req.body.name},
+        newBarangayData)
+    
+    // if barangay does not exist, save the new barangay data
+    if(!updatedBarangay){
+       const newData = await newBarangayData.save()
+       return res.send({message: "created new barangay data of " + newData.name})
+    }
+
+    // if barangay exist and update success,
+    res.send({message: "updated barangay " + updatedBarangay.name})
 })
 
 // App Routes
