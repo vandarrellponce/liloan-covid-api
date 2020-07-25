@@ -24,7 +24,6 @@ hbs.registerPartials(partialsPath)
 app.use(express.static(publicDirPath))
 app.use(express.json())
 
-
 // Database Connection
 mongoose.connect(mongodbUrl, {
     useNewUrlParser: true,
@@ -32,13 +31,8 @@ mongoose.connect(mongodbUrl, {
     useCreateIndex: true,
     useFindAndModify: false
 })
-.then(
-    () => {
-        console.log('MongoDB connection established...')
-    }
-)
+.then(() => console.log('MongoDB connection established...'))
 .catch(e => console.log(e.reason))
-
 
 // Sideline Routes
 
