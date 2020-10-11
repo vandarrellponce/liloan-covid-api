@@ -34,6 +34,9 @@ mongoose.connect(mongodbUrl, {
 .then(() => console.log('MongoDB connection established...'))
 .catch(e => console.log(e.reason))
 
+// Scheduler
+require('./jobScheduler')
+
 // Sideline Routes
 
 // get all daily data
